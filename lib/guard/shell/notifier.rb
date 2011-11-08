@@ -8,8 +8,8 @@ module Guard
       end
 
       # failed | success
-      def self.guard_image(command)
-        icon = if command
+      def self.guard_image(result)
+        icon = if result
           :success
         else
           :failed
@@ -18,7 +18,7 @@ module Guard
 
       def self.notify(result, command, duration)
         message = guard_message(command, duration)
-        image   = guard_image(command)
+        image   = guard_image(result)
 
         ::Guard::Notifier.notify(message, :title => 'Shell command', :image => image)
       end
